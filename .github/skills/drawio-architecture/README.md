@@ -7,7 +7,15 @@ GitHub Copilot、Claude Code など、[Agent Skills](https://agentskills.io) に
 
 ## 導入
 
-このフォルダを、使うエージェントのスキル置き場にコピーする。
+配布用の zip は、リポジトリ直下で展開するとそのまま GitHub Copilot 用に配置される構成になっている。
+
+```
+.github/
+├─ agents/diagram-planner.agent.md      作図指示エージェント
+└─ skills/drawio-architecture/          このスキル
+```
+
+個人用(全リポジトリ共通)にする場合や、ほかのエージェントで使う場合は、スキルのフォルダを次の場所にコピーする。
 
 | エージェント | リポジトリ単位 | 全リポジトリ共通(個人) |
 |---|---|---|
@@ -15,12 +23,14 @@ GitHub Copilot、Claude Code など、[Agent Skills](https://agentskills.io) に
 | Claude Code | `.claude/skills/drawio-architecture/` | `~/.claude/skills/drawio-architecture/` |
 | その他の対応エージェント | `.agents/skills/drawio-architecture/` | `~/.agents/skills/drawio-architecture/` |
 
-Windows の `~` は `%USERPROFILE%` を指す。
+Windows の `~` は `%USERPROFILE%` を指す。作図指示エージェントは GitHub Copilot 用で、個人用にする場合は `~/.copilot/agents/` にコピーする。
 
 前提は Python 3.8 以上(標準ライブラリのみで動作)。PyYAML があれば仕様を YAML で書き、なければ JSON で書く。
 生成した .drawio は draw.io デスクトップ版でそのまま開いて編集できる。
 
 ## フォルダ構成
+
+スキル(`.github/skills/drawio-architecture/`)の中身。作図指示エージェントは `.github/agents/` に別に置く。
 
 ```
 drawio-architecture/
@@ -29,11 +39,11 @@ drawio-architecture/
 ├─ LICENSE                  MIT License
 ├─ scripts/
 │  ├─ build_drawio.py       仕様 → .drawio の生成と検査
-│  └─ icons.json            draw.io 同梱アイコンのカタログ(112種)
+│  └─ icons.json            draw.io 同梱アイコンのカタログ(116種)
 ├─ references/
 │  ├─ best-practices.md     構成図のベストプラクティスと出典(レビュー依頼のときだけ読む)
 │  └─ spec.md               高度な設定(矢印の種類の追加、長い記法、アイコン追加)
-└─ examples/                人が参照する見本の仕様(Azure: YAML / AWS: JSON)
+└─ examples/                見本の仕様(Azure: YAML / AWS: JSON)と作図指示書の見本(*.brief.md)
 ```
 
 ## 設計思想
@@ -45,12 +55,14 @@ drawio-architecture/
 - エージェントに座標や XML を直接扱わせると、矢印がアイコンや他の矢印に重なる、凡例がないといった見づらい図になりやすい。そこで描画は決定的なスクリプトに任せる。
 - 矢印は、アイコンとラベルを障害物とみなした経路探索で引く。主要な通信(`main`)を先に引いて直線を確保し、交差は弧(ジャンプ)で示す。
 - 矢印のラベルは、アイコン・ノード名・グループ名・他のラベルと重ならない区間と位置を探して置く。隣り合うノードを結ぶ短い矢印は、ラベルが収まるよう列の間隔を自動で広げる。
+- 先頭の空の列・行は自動で詰める。途中の空の列・行は矢印の通り道として残す。
 - .drawio の XML は手書きさせない。修正も仕様ファイルに対して行い、再生成する。
 
 ### 2. 外部に依存しない
 
 - アイコンは draw.io 本体に同梱された Azure / AWS の公式アイコンを名前で参照するだけで、画像はダウンロードしない。名前は draw.io のソースコードと照合済み。
 - MCP サーバや外部 API は使わない。
+- 例外は作図指示エージェントで、必要なコンポーネントを公式ドキュメントで確認するためだけに Web を使う(後述)。スキル(作図)自体は通信しない。
 - Python の標準ライブラリだけで動く(YAML のみ PyYAML が必要)。
 
 ### 3. Windows・macOS・Linux で動く
@@ -117,6 +129,34 @@ drawio -x -f png -s 1.5 -o azure-web.png azure-web.drawio   # Linux
 ```
 
 `--edge-style straight` を付けると、矢印を生成時の経路のまま固定する。既定の `orth` は、draw.io 上でノードを動かしても矢印が直角を保つ。
+
+## 作図指示エージェント(Diagram Planner)
+
+きれいな構成図を作るには、目的・観点・前提・コンポーネント・つながりを先に決めておくことが一番効く。
+`.github/agents/diagram-planner.agent.md` は、ユーザーへのヒアリングと公式ドキュメントの確認でこれらを埋め、作図指示書(`docs/diagrams/<テーマ>.brief.md`)を作る GitHub Copilot のカスタムエージェント。
+
+**導入**: 配布用 zip をリポジトリ直下で展開すれば `.github/agents/` に入る。個人用にする場合は `~/.copilot/agents/` にコピーする。
+
+**使い方**
+1. チャットのエージェント一覧から **Diagram Planner** を選び、作りたい図のテーマを伝える(例: 「AWS上でVSとOfficeを使うWindows EC2の構成図を設計書用に作りたい」)。
+2. 不足している情報だけを、既定値の提案付きで質問してくる。分からなければ「おまかせ」でよい。必要なのに挙がっていないコンポーネントは `(提案)` として追加され、推測した内容は「未確定事項・仮定」に分けて書かれる。
+3. 指示書を確認して OK を出すと、ファイルに保存される。
+4. **この指示書で作図する** ボタンを押すと、通常のエージェントに切り替わり、drawio-architecture スキルで作図する(送信前にプロンプトを編集できる)。
+
+指示書の見本は `examples/webapp-azure.brief.md`。
+
+**設計上の判断**
+- エージェントは作図しない。ヒアリングと指示書づくりに専念させ、作図はスキルに任せる(役割を分けると、それぞれの指示が短くなる)。
+- 使えるツールは `read`・`search`・`edit`・`todo`・`web`。`web` は、対象サービスの前提条件・必要な付随コンポーネント(エンドポイント、ID、ライセンス、シークレット、IAMロールなど)・ポート・上限値を確認するために使う。参照するのはベンダーの公式ドキュメント(learn.microsoft.com、docs.aws.amazon.com など)だけで、ブログは使わない。参照したURLは指示書の「出典」に残る。
+- モデルの知識だけでは、新しい機能や細かい前提を落としやすい(例: License Manager の RDS ライセンスサーバーと GPO の設定は、同時3セッション以上に必須だが見落としやすい)。公式ドキュメントで確認させるのはそのため。
+- 外部への通信を避けたい環境では、`tools` から `web` を外す。その場合、確認できなかった項目は「未確定事項」に回される。
+- 1枚の図は主要な流れ1〜2本・ノード15個・矢印12本を目安に、観点ごとに分けるよう指示している(スクリプトの警告の上限は25個・20本)。
+- 引き継ぎボタン(handoffs)は、VS Code のローカルのエージェントで使える機能。使えない環境では、保存された指示書を添えて「この指示書で作図して」と頼めばよい。
+
+## 設計書に載せる図を作る
+
+設計書には、1枚にすべてを描くのではなく、観点ごとに分けた図(例: ①接続と認証、②ライセンス管理と構築)を載せる。
+draw.io デスクトップ版で、Word・Excel 向けには `-f png -s 2`、拡大しても劣化させたくない場合は `-f svg` で書き出す。
 
 ## 保守
 

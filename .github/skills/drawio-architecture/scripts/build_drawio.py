@@ -177,8 +177,19 @@ def _label(v):
     return v.replace("\\n", "\n") if isinstance(v, str) else v
 
 
+def _unsplit(item):
+    """YAMLで「: 」を含む1行記法が {"前半": "後半"} と解釈された場合に、元の1行へ戻す。"""
+    if isinstance(item, dict) and len(item) == 1:
+        (k, v), = item.items()
+        if isinstance(k, str) and "|" in k and not isinstance(v, (dict, list)):
+            return f"{k}: {'' if v is None else v}"
+    return item
+
+
 def normalize(spec, errors):
     spec = dict(spec or {})
+    for key in ("groups", "nodes", "edges"):
+        spec[key] = [_unsplit(x) for x in (spec.get(key) or [])]
     groups = []
     for g in spec.get("groups") or []:
         if isinstance(g, str):
@@ -328,6 +339,12 @@ class Diagram:
             self.errors.append("nodes が空です")
         if self.errors:
             return
+        # 先頭の空の列・行は余白になるだけなので詰める(途中の空の列・行は矢印の通り道として残す)
+        c0 = min(n["col"] for n in self.nodes.values())
+        r0 = min(n["row"] for n in self.nodes.values())
+        for n in self.nodes.values():
+            n["col"] -= c0
+            n["row"] -= r0
         self._check_groups()
 
     def ancestors(self, gid):

@@ -53,7 +53,7 @@ edge_kinds:  # optional: rename/add kinds
   private: {label: プライベートエンドポイント経由}
 ```
 
-- Trailing fields may be omitted; `-` means empty. Quote the line if it contains `: ` or ` #`.
+- Trailing fields may be omitted; `-` means empty. `: ` inside a line is fine; quote the line if it contains ` #` (YAML comment).
 - In JSON, use the same lines as strings: `"edges": ["user > agw | HTTPS 443 | main | 1 | 利用者がHTTPSでアクセス"]`.
 - Kinds: `main` (default), `private`, `mgmt`, `log`, `backup`, `vpn`. Adding kinds: see `references/spec.md`.
 - Arrow direction = who initiates the connection. Do not draw return traffic. Use `<>` only for truly bidirectional links (VPN tunnels).
@@ -74,6 +74,10 @@ edge_kinds:  # optional: rename/add kinds
 Check what the script cannot: nothing irrelevant to the purpose is drawn; arrow directions are right; one icon per resource type; abbreviations are understandable. Report the .drawio path and any remaining warnings.
 
 Render a PNG only if warnings remain that you cannot resolve or the user asks (images cost many tokens), with the draw.io desktop CLI: `<drawio> -x -f png -s 1.5 -o web.png web.drawio`, where `<drawio>` is `& "C:\Program Files\draw.io\draw.io.exe"` (Windows), `/Applications/draw.io.app/Contents/MacOS/draw.io` (macOS) or `drawio` (Linux).
+
+## Images for design documents
+
+Split by viewpoint (e.g. ① access & authentication, ② licensing & build) instead of one dense diagram; number the titles ①②. Export with the draw.io CLI above using `-f png -s 2` (Word/Excel) or `-f svg` (scalable).
 
 ## Changing an existing diagram
 
