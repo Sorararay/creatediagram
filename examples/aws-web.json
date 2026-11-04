@@ -1,0 +1,34 @@
+{
+ "title": "Webシステム 本番環境 構成図(AWS・利用者アクセス経路)",
+ "groups": [
+  "account | aws.account | - | AWSアカウント(本番)",
+  "region | aws.region | account | 東京リージョン (ap-northeast-1)",
+  "vpc | aws.vpc | region | VPC 10.0.0.0/16",
+  "pub | aws.public_subnet | vpc | Public subnet 10.0.0.0/24",
+  "app | aws.private_subnet | vpc | Private subnet(App) 10.0.1.0/24",
+  "db | aws.private_subnet | vpc | Private subnet(DB) 10.0.2.0/24"
+ ],
+ "nodes": [
+  "user | generic.users | 0,1 | - | 利用者",
+  "waf | aws.waf | 1,0 | account | AWS WAF",
+  "cf | aws.cloudfront | 1,1 | account | CloudFront",
+  "igw | aws.internet_gateway | 2,1 | vpc | Internet Gateway",
+  "alb | aws.elb | 3,1 | pub | ALB",
+  "ec2 | aws.ec2 | 4,1 | app | EC2\\n(Webアプリ)",
+  "rds | aws.rds | 5,1 | db | RDS\\n(MySQL)",
+  "vpce | aws.vpc_endpoint | 5,2 | vpc | VPCエンドポイント\\n(ゲートウェイ型)",
+  "cw | aws.cloudwatch | 4,3 | region | CloudWatch",
+  "s3 | aws.s3 | 5,3 | region | S3\\n(アップロードファイル)"
+ ],
+ "edges": [
+  "user > cf | HTTPS 443 | main | 1 | 利用者がCloudFrontにHTTPSでアクセス",
+  "waf > cf | Web ACL | mgmt",
+  "cf > igw | HTTPS 443 | main | 2 | CloudFrontがオリジンへ転送",
+  "igw > alb | HTTPS 443 | main | 3 | Internet Gateway経由でALBへ",
+  "alb > ec2 | HTTP 8080 | main | 4 | ALBがEC2のアプリへ振り分け",
+  "ec2 > rds | MySQL 3306 | private | 5 | アプリがRDSを参照",
+  "ec2 > vpce | HTTPS 443 | private | 6 | アプリがVPCエンドポイント経由でS3へ保存",
+  "vpce > s3 | HTTPS 443 | private",
+  "ec2 > cw | ログ・メトリクス | log"
+ ]
+}

@@ -1,0 +1,562 @@
+{
+ "azure.front_door": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Front_Doors.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.application_gateway": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Application_Gateways.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.firewall": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Firewalls.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.firewall_policy": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Azure_Firewall_Policy.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.waf_policy": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Web_Application_Firewall_Policies_WAF.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.load_balancer": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Load_Balancers.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.vnet": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.subnet": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Subnet.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.private_endpoint": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Private_Endpoint.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.private_link": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Private_Link.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.vpn_gateway": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Virtual_Network_Gateways.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.local_network_gateway": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Local_Network_Gateways.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.connection": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Connections.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.expressroute": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/ExpressRoute_Circuits.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.bastion": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Bastions.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.dns_zone": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/DNS_Zones.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.nsg": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Network_Security_Groups.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.nat_gateway": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/NAT.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.public_ip": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Public_IP_Addresses.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.ddos_protection": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/DDoS_Protection_Plans.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.route_table": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Route_Tables.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.traffic_manager": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Traffic_Manager_Profiles.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.virtual_wan": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/networking/Virtual_WANs.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.vm": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/compute/Virtual_Machine.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.vmss": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/compute/VM_Scale_Sets.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.function_app": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.aks": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/containers/Kubernetes_Services.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.acr": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/containers/Container_Registries.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.aci": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/containers/Container_Instances.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.app_service": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.app_service_plan": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/app_services/App_Service_Plans.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.postgresql": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.mysql": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/Azure_Database_MySQL_Server.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.sql_database": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.cosmos_db": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.redis": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/Cache_Redis.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.data_explorer": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/databases/Azure_Data_Explorer_Clusters.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.storage_account": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.file_share": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/storage/Azure_Fileshare.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.key_vault": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.defender": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/security/Security_Center.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.monitor": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/management_governance/Monitor.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.log_analytics": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/analytics/Log_Analytics_Workspaces.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.app_insights": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/devops/Application_Insights.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.data_collection_rule": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/other/Data_Collection_Rules.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.recovery_services_vault": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/management_governance/Recovery_Services_Vaults.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.backup_vault": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/other/Backup_Vault.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.automation": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/management_governance/Automation_Accounts.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.entra_id": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/identity/Azure_Active_Directory.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.ad_b2c": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/identity/Azure_AD_B2C.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.managed_identity": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/identity/Managed_Identities.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.entra_domain_services": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/identity/Entra_Domain_Services.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.service_bus": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/integration/Service_Bus.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.event_grid": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/integration/Event_Grid_Topics.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.event_hubs": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/analytics/Event_Hubs.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.logic_app": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/integration/Logic_Apps.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.communication_services": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/other/Azure_Communication_Services.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.openai": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/ai_machine_learning/Azure_OpenAI.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.devops": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/devops/Azure_DevOps.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.resource_group": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/general/Resource_Groups.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "azure.subscription": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "generic.users": {
+  "style": "image;aspect=fixed;html=1;points=[];align=center;verticalLabelPosition=bottom;verticalAlign=top;fontSize=12;image=img/lib/azure2/identity/Users.svg;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.ec2": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.lambda": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.ecs": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.eks": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eks;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.fargate": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.ecr": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecr;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.elb": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_load_balancing;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.cloudfront": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudfront;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.route53": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.route_53;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.api_gateway": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.network_firewall": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.network_firewall;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.waf": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.shield": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.shield;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.transit_gateway": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.transit_gateway;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.site_to_site_vpn": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.site_to_site_vpn;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.direct_connect": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.direct_connect;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.rds": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.aurora": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.aurora;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.dynamodb": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.elasticache": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticache;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.s3": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.efs": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_file_system;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.fsx": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fsx;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.fsx_windows": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fsx_for_windows_file_server;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.backup": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.backup;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.cloudwatch": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.cloudtrail": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudtrail;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.cloudformation": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudformation;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.systems_manager": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.systems_manager;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.iam": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.kms": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.key_management_service;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.secrets_manager": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.secrets_manager;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.guardduty": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.guardduty;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.security_hub": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_hub;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.cognito": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.directory_service": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.directory_service;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.sns": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.sqs": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.eventbridge": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.ses": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.codepipeline": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codepipeline;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.nat_gateway": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.nat_gateway;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.internet_gateway": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.internet_gateway;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.vpc_endpoint": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.endpoints;",
+  "w": 48,
+  "h": 48
+ },
+ "aws.customer_gateway": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.customer_gateway;",
+  "w": 48,
+  "h": 48
+ },
+ "generic.client": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.client;",
+  "w": 48,
+  "h": 47
+ },
+ "generic.server": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.traditional_server;",
+  "w": 35,
+  "h": 60
+ },
+ "generic.onprem_dc": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.corporate_data_center;",
+  "w": 33,
+  "h": 48
+ },
+ "generic.internet": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.internet_alt1;",
+  "w": 48,
+  "h": 30
+ },
+ "generic.mobile": {
+  "style": "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.mobile_client;",
+  "w": 28,
+  "h": 48
+ }
+}

@@ -1,0 +1,34 @@
+title: Webシステム 本番環境 構成図(Azure・利用者アクセス経路)
+groups:  # id | type | parent | label
+  - sub | azure.subscription | - | sub-prod
+  - rg | azure.resource_group | sub | rg-web-prod
+  - vnet | azure.vnet | rg | vnet-prod 10.0.0.0/16
+  - snet-agw | azure.subnet | vnet | snet-agw 10.0.1.0/24
+  - snet-aks | azure.subnet | vnet | snet-aks 10.0.2.0/23
+  - snet-pe | azure.subnet | vnet | snet-pe 10.0.4.0/24
+nodes:   # id | icon | col,row | group | label
+  - user | generic.users | 0,1 | - | 利用者
+  - afd | azure.front_door | 1,1 | - | Front Door\n(WAF)
+  - agw | azure.application_gateway | 2,1 | snet-agw | App Gateway\n(WAF v2)
+  - aks | azure.aks | 3,1 | snet-aks | AKS
+  - pe-pg | azure.private_endpoint | 4,0 | snet-pe | PE\n(PostgreSQL)
+  - pe-kv | azure.private_endpoint | 4,1 | snet-pe | PE\n(Key Vault)
+  - pg | azure.postgresql | 5,0 | rg | PostgreSQL\nフレキシブルサーバー
+  - kv | azure.key_vault | 5,1 | rg | Key Vault
+  - acr | azure.acr | 3,2 | rg | Container Registry
+  - law | azure.log_analytics | 2,3 | rg | Log Analytics
+  - entra | azure.entra_id | 1,3 | - | Entra ID
+edges:   # from > to | label | kind | step | desc
+  - user > afd | HTTPS 443 | main | 1 | 利用者がFront Door(WAF)にHTTPSでアクセス
+  - afd > agw | HTTPS 443 | main | 2 | Front DoorがApp Gatewayへ転送
+  - agw > aks | HTTPS 443 | main | 3 | App GatewayがAKSのIngressへ振り分け
+  - aks > pe-pg | PostgreSQL 5432 | private | 4 | アプリがPE経由でDBを参照
+  - aks > pe-kv | HTTPS 443 | private | 5 | アプリがPE経由でシークレットを取得
+  - pe-pg > pg | Private Link | private
+  - pe-kv > kv | Private Link | private
+  - aks > acr | イメージ取得 | private
+  - aks > law | コンテナログ | log
+  - agw > law | アクセスログ・WAFログ | log
+  - user > entra | サインイン(OIDC) | mgmt
+edge_kinds:
+  private: {label: プライベートエンドポイント経由}

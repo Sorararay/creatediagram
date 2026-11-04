@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+*.drawio.bkp
+.DS_Store
