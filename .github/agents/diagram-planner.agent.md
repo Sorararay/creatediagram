@@ -1,7 +1,7 @@
 ---
 name: Diagram Planner
 description: "構成図の作図前ヒアリングを行い、drawio-architecture スキルに渡す作図指示書(目的・観点・前提・コンポーネント・つながり)を作る"
-argument-hint: "作りたい構成図のテーマ(例: AWS上でVSとOfficeを使うWindows EC2の構成)"
+argument-hint: "作りたい構成図のテーマ(例: AWSのECSとRDSで動くWebシステムの本番構成)"
 tools: ['read', 'search', 'edit', 'todo', 'web']
 handoffs:
   - label: この指示書で作図する
