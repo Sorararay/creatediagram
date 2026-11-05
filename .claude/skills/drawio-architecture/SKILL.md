@@ -11,25 +11,19 @@ Reply to the user in their language (usually Japanese) and write diagram labels 
 **Do not open** `scripts/`, `README.md` or any `.drawio` file. Never hand-write or edit .drawio XML.
 Everything you need is on this page; the script's messages tell you what to fix.
 
-`<SKILL>` = this folder (e.g. `.github/skills/drawio-architecture`, `.claude/skills/drawio-architecture`). Use `/` in paths; it also works in PowerShell.
-Run `python` (or `python3`); on Windows, if it is missing or opens the Microsoft Store, use `py -3`.
+Run the script as `python3 "${CLAUDE_SKILL_DIR}/scripts/build_drawio.py" …` (on Windows use `python`, or `py -3` if `python` is missing or opens the Microsoft Store). Use `/` in paths; it also works in PowerShell.
+
+If purpose, scope or components are unclear and a `diagram-planner` subagent exists, delegate to it first. Ask the user the questions it returns (AskUserQuestion, at most 4 per round), update the brief it saved, then draw from the brief.
 
 ## 1. Decide scope (before drawing)
 
-First look for a diagram brief (`docs/diagrams/*.brief.md`, or one the user names). If one matches the request, it is the source of truth: take titles, the split into diagrams, components, connections and step numbers from it and skip the rest of this section, except for checking the brief against the rules below. Do not ask again about what it settles. Treat items under 未確定事項・仮定 as assumptions and list them in your report. If something in it breaks a rule below, say so instead of silently changing it.
-
-Without a brief, decide these yourself (these rules are also the ones the Diagram Planner agent follows):
-
-- Audience and purpose of the diagram. Draw only 1–2 main flows per diagram; split monitoring, ops access, DR etc. into separate diagrams (typical viewpoints: access & authentication / data flow / operations & monitoring / licensing & build / DR).
-- Size: aim for ≤15 nodes and ≤12 arrows per diagram; over 25 nodes or 20 arrows the script warns.
-- `title`: system + environment + viewpoint (e.g. 〇〇システム 本番環境 ネットワーク構成図). Number split diagrams ①②….
-- Nodes are resources, not features or settings (e.g. App Service VNet integration is a property of App Service: put it in the arrow label, not as a node).
-- Nesting: account/subscription → region → VNet/VPC → subnet. PaaS (Key Vault, Storage, ACR, Log Analytics, S3, CloudWatch…) goes outside VNet/VPC, reached via private/VPC endpoints. Global services (Front Door, Entra ID, CloudFront, Route 53, IAM) go outside regions. Always draw the AWS account boundary, even for one account. A NAT Gateway needs an Internet Gateway in the VPC.
-- Step numbers 1, 2, 3… go only on the main flow, in the order it happens; parallel branches and secondary arrows get no number.
+- Audience and purpose of the diagram. Draw only 1–2 main flows per diagram; split monitoring, ops access, DR etc. into separate diagrams.
+- `title`: system + environment + viewpoint (e.g. 〇〇システム 本番環境 ネットワーク構成図).
+- Nesting: account/subscription → region → VNet/VPC → subnet. PaaS (Key Vault, Storage, ACR, Log Analytics, S3, CloudWatch…) goes outside VNet/VPC, reached via private/VPC endpoints. Global services (Front Door, Entra ID, CloudFront, Route 53, IAM) go outside regions.
 
 ## 2. Find icons
 
-`python <SKILL>/scripts/build_drawio.py --find postgres kubernetes` (English keywords, several at once). Unknown names also get suggestions in error messages. If nothing fits, use `box` (text-only box). Never invent icon names.
+`python3 "${CLAUDE_SKILL_DIR}/scripts/build_drawio.py" --find postgres kubernetes` (English keywords, several at once). Unknown names also get suggestions in error messages. If nothing fits, use `box` (text-only box). Never invent icon names.
 
 Group types: `azure.region|subscription|resource_group|vnet|subnet`, `aws.cloud|account|region|az|vpc|public_subnet|private_subnet|security_group`, `generic.onprem|box`.
 
@@ -69,7 +63,7 @@ edge_kinds:  # optional: rename/add kinds
 
 ## 5. Generate (checks run automatically)
 
-`python <SKILL>/scripts/build_drawio.py docs/diagrams/web.yaml -o docs/diagrams/web.drawio`
+`python3 "${CLAUDE_SKILL_DIR}/scripts/build_drawio.py" docs/diagrams/web.yaml -o docs/diagrams/web.drawio`
 
 - `ERROR`: nothing is written. Fix the spec as told.
 - `WARN … アイコンかラベルの上を通っています`: move nodes or leave an empty column/row as a corridor.
@@ -80,7 +74,7 @@ edge_kinds:  # optional: rename/add kinds
 
 Check what the script cannot: nothing irrelevant to the purpose is drawn; arrow directions are right; one icon per resource type; abbreviations are understandable. Report the .drawio path and any remaining warnings.
 
-Render a PNG only if warnings remain that you cannot resolve or the user asks (images cost many tokens), with the draw.io desktop CLI: `<drawio> -x -f png -s 1.5 -o web.png web.drawio`, where `<drawio>` is `& "C:\Program Files\draw.io\draw.io.exe"` (Windows), `/Applications/draw.io.app/Contents/MacOS/draw.io` (macOS) or `drawio` (Linux).
+Render a PNG and view it with Read only if warnings remain that you cannot resolve or the user asks (images cost many tokens), with the draw.io desktop CLI: `<drawio> -x -f png -s 1.5 -o web.png web.drawio`, where `<drawio>` is `& "C:\Program Files\draw.io\draw.io.exe"` (Windows), `/Applications/draw.io.app/Contents/MacOS/draw.io` (macOS) or `drawio` (Linux).
 
 ## Images for design documents
 

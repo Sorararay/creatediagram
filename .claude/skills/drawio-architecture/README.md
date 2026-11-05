@@ -3,35 +3,31 @@
 Azure・AWS のシステム構成図を draw.io 形式(.drawio)で作成・修正・レビューするための Agent Skill。
 GitHub Copilot、Claude Code など、[Agent Skills](https://agentskills.io) に対応したエージェントで使える。
 
-> このファイルは人が読むための説明書。エージェントには読ませない(SKILL.md で「開かない」と指示している)。
+> Claude Code 版。このファイルは人が読むための説明書。エージェントには読ませない(SKILL.md で「開かない」と指示している)。
 
-## 導入
+## 導入(Claude Code 版)
 
-配布用の zip は、リポジトリ直下で展開するとそのまま GitHub Copilot 用に配置される構成になっている。
+配布用の zip は、リポジトリ直下で展開するとそのまま Claude Code 用に配置される構成になっている。
 
 ```
-.mcp.json                               作図指示エージェントが使う MCP サーバの設定
-.github/
-├─ agents/diagram-planner.agent.md      作図指示エージェント
+.claude/
+├─ agents/diagram-planner.md            作図指示サブエージェント
 └─ skills/drawio-architecture/          このスキル
 ```
 
-個人用(全リポジトリ共通)にする場合や、ほかのエージェントで使う場合は、スキルのフォルダを次の場所にコピーする。
-
-| エージェント | リポジトリ単位 | 全リポジトリ共通(個人) |
+| 使い方 | スキル | サブエージェント |
 |---|---|---|
-| GitHub Copilot(VS Code) | `.github/skills/drawio-architecture/` | `~/.copilot/skills/drawio-architecture/` |
-| Claude Code | `.claude/skills/drawio-architecture/` | `~/.claude/skills/drawio-architecture/` |
-| その他の対応エージェント | `.agents/skills/drawio-architecture/` | `~/.agents/skills/drawio-architecture/` |
+| リポジトリ単位 | `.claude/skills/drawio-architecture/` | `.claude/agents/diagram-planner.md` |
+| 全リポジトリ共通(個人) | `~/.claude/skills/drawio-architecture/` | `~/.claude/agents/diagram-planner.md` |
 
-Windows の `~` は `%USERPROFILE%` を指す。作図指示エージェントは GitHub Copilot 用で、個人用にする場合は `~/.copilot/agents/` にコピーする。
+Windows の `~` は `%USERPROFILE%` を指す。スキルは `/drawio-architecture` で直接呼び出すこともできる。
 
 前提は Python 3.8 以上(標準ライブラリのみで動作)。PyYAML があれば仕様を YAML で書き、なければ JSON で書く。
 生成した .drawio は draw.io デスクトップ版でそのまま開いて編集できる。
 
 ## フォルダ構成
 
-スキル(`.github/skills/drawio-architecture/`)の中身。作図指示エージェントは `.github/agents/` に別に置く。
+スキル(`.claude/skills/drawio-architecture/`)の中身。作図指示サブエージェントは `.claude/agents/` に別に置く。
 
 ```
 drawio-architecture/
@@ -63,7 +59,7 @@ drawio-architecture/
 
 - アイコンは draw.io 本体に同梱された Azure / AWS の公式アイコンを名前で参照するだけで、画像はダウンロードしない。名前は draw.io のソースコードと照合済み。
 - MCP サーバや外部 API は使わない。
-- 例外は作図指示エージェントで、必要なコンポーネントを公式ドキュメントで確認するためだけに、ベンダー公式のドキュメント用 MCP サーバ(と予備の Web)を使う(後述)。スキル(作図)自体は通信しない。
+- 例外は作図指示エージェントで、必要なコンポーネントを公式ドキュメントで確認するためだけに Web を使う(後述)。スキル(作図)自体は通信しない。
 - Python の標準ライブラリだけで動く(YAML のみ PyYAML が必要)。
 
 ### 3. Windows・macOS・Linux で動く
@@ -131,42 +127,34 @@ drawio -x -f png -s 1.5 -o azure-web.png azure-web.drawio   # Linux
 
 `--edge-style straight` を付けると、矢印を生成時の経路のまま固定する。既定の `orth` は、draw.io 上でノードを動かしても矢印が直角を保つ。
 
-## 作図指示エージェント(Diagram Planner)
+## 作図指示サブエージェント(diagram-planner)
 
 きれいな構成図を作るには、目的・観点・前提・コンポーネント・つながりを先に決めておくことが一番効く。
-`.github/agents/diagram-planner.agent.md` は、ユーザーへのヒアリングと公式ドキュメントの確認でこれらを埋め、作図指示書(`docs/diagrams/<テーマ>.brief.md`)を作る GitHub Copilot のカスタムエージェント。
+`.claude/agents/diagram-planner.md` は、公式ドキュメントを調べてこれらを埋め、作図指示書(`docs/diagrams/<テーマ>.brief.md`)を作る Claude Code のサブエージェント。
 
-**導入**: 配布用 zip をリポジトリ直下で展開すれば `.github/agents/` に入る。個人用にする場合は `~/.copilot/agents/` にコピーする。
+**GitHub Copilot 版との違い**
+Claude Code のサブエージェントはユーザーに直接質問できない(AskUserQuestion が使えない)。そこで役割を次のように分けている。
 
-公式ドキュメントの確認には、次の2つの MCP サーバを使う。どちらも認証不要のリモートサーバで、設定はリポジトリ直下の `.mcp.json`(`mcpServers` 形式)にある。
+| 担当 | やること |
+|---|---|
+| サブエージェント | 公式ドキュメントの調査、指示書の下書き(不明点は既定値で埋めて `(仮定)` と明記)、確認したい質問(最大4つ、選択肢付き)を返す |
+| メインのエージェント | 返ってきた質問をユーザーに聞き、回答で指示書を直し、drawio-architecture スキルで作図する |
 
-| サーバ名 | 提供元 | エンドポイント |
-|---|---|---|
-| `microsoft-learn` | Microsoft Learn MCP Server | `https://learn.microsoft.com/api/mcp` |
-| `aws-knowledge-mcp` | AWS Knowledge MCP Server | `https://knowledge-mcp.global.api.aws` |
-
-- `.mcp.json` は GitHub Copilot(VS Code)と Claude Code の両方が読む。VS Code ではワークスペースを信頼すると使えるようになる。
-- 個人用にする場合は、同じ内容を `~/.copilot/mcp-config.json` に入れる。
-- サーバ名を変えたときは、エージェントの `tools` にある `microsoft-learn/*`・`aws-knowledge-mcp/*` も合わせて変える。
-- AWS Knowledge MCP Server には利用回数の制限がある(数値は非公開)。
+調査で読んだドキュメントはサブエージェントの中だけで消費され、メインには指示書のパスと質問だけが返る。そのため、メインの会話が調査結果で膨らまない(GitHub Copilot 版より、トークン効率の面では有利)。
 
 **使い方**
-1. チャットのエージェント一覧から **Diagram Planner** を選び、作りたい図のテーマを伝える(例: 「AWSのECSとRDSで動くWebシステムの本番構成図を設計書用に作りたい」)。
-2. 不足している情報だけを、既定値の提案付きで質問してくる。分からなければ「おまかせ」でよい。必要なのに挙がっていないコンポーネントは `(提案)` として追加され、推測した内容は「未確定事項・仮定」に分けて書かれる。
-3. 指示書を確認して OK を出すと、ファイルに保存される。
-4. **この指示書で作図する** ボタンを押すと、通常のエージェントに切り替わり、drawio-architecture スキルで作図する(送信前にプロンプトを編集できる)。
-
-指示書の見本は `examples/webapp-azure.brief.md`。
+1. 「AWS上でVSとOfficeを使うWindows EC2の構成図を設計書用に作りたい」のように頼む。前提が足りなければ、メインのエージェントが diagram-planner に任せる(説明文に「use proactively」と書いてあるので自動で使われる。`@diagram-planner` で明示的に呼ぶこともできる)。
+2. メインのエージェントが、選択肢付きの質問を出す。答えるか、既定値で進めてよいと伝える。
+3. 指示書が更新されたら、そのまま作図まで進む。
 
 **設計上の判断**
-- エージェントは作図しない。ヒアリングと指示書づくりに専念させ、作図はスキルに任せる(役割を分けると、それぞれの指示が短くなる)。
-- 使えるツールは `read`・`search`・`edit`・`todo`・`microsoft-learn/*`・`aws-knowledge-mcp/*`・`web`。対象サービスの前提条件・必要な付随コンポーネント(エンドポイント、ID、ライセンス、シークレット、IAMロールなど)・ポート・上限値を確認するために使う。参照したURLは指示書の「出典」に残る。
-- 確認には、まずベンダー公式の MCP サーバを使う。検索対象が最初から公式ドキュメントに限られるのでブログが混ざらず、必要な部分だけが返るのでページ全体を読むよりトークンが少ない。
-- `web` は予備。MCP サーバがつながらないとき(社内ネットワークなど)や、Google Cloud など対応する MCP サーバがないときだけ使い、その場合もベンダーの公式ドキュメント(learn.microsoft.com、docs.aws.amazon.com など)だけを読む。
+- サブエージェントは作図しない。調査と指示書づくりに専念させ、作図はスキルに任せる。
+- 使えるツールは Read・Grep・Glob・Write・Edit・WebSearch・WebFetch。参照するのはベンダーの公式ドキュメント(learn.microsoft.com、docs.aws.amazon.com など)だけで、ブログは使わない。参照したURLは指示書の「出典」に残る。Microsoft Learn や AWS Knowledge の MCP サーバーを設定していれば、そちらを優先して使う。
 - モデルの知識だけでは、新しい機能や細かい前提を落としやすい(例: License Manager の RDS ライセンスサーバーと GPO の設定は、同時3セッション以上に必須だが見落としやすい)。公式ドキュメントで確認させるのはそのため。
-- 外部への通信を避けたい環境では、`tools` から `microsoft-learn/*`・`aws-knowledge-mcp/*`・`web` を外す(`.mcp.json` も置かない)。その場合、確認できなかった項目は「未確定事項」に回される。
+- 外部への通信を避けたい環境では、`tools` から WebSearch と WebFetch を外す。その場合、確認できなかった項目は「未確定事項」に回される。
 - 1枚の図は主要な流れ1〜2本・ノード15個・矢印12本を目安に、観点ごとに分けるよう指示している(スクリプトの警告の上限は25個・20本)。
-- 引き継ぎボタン(handoffs)は、VS Code のローカルのエージェントで使える機能。使えない環境では、保存された指示書を添えて「この指示書で作図して」と頼めばよい。
+
+指示書の見本は `examples/webapp-azure.brief.md`。
 
 ## 設計書に載せる図を作る
 
