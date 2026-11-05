@@ -11,7 +11,7 @@
 
 ## 前提
 - クラウド/リージョン/AZ: Azure 東日本リージョン
-- 境界: サブスクリプション(sub-app-prod) → リソースグループ(rg-webapp-prod) → VNet(vnet-webapp 10.1.0.0/16) → サブネット(snet-agw: Application Gateway / snet-app: App Service VNet統合 / snet-pe: プライベートエンドポイント)
+- 境界: サブスクリプション(sub-app-prod) → リソースグループ(rg-webapp-prod) → VNet(vnet-webapp 10.1.0.0/16) → サブネット(snet-agw: Application Gateway / snet-app: App Service VNet統合の送信用(ノードがないため図には描かない) / snet-pe: プライベートエンドポイント)
 - 利用者・接続方式: 社内利用者が社内ネットワークからHTTPSで接続。サインインはEntra ID
 
 ## コンポーネント
@@ -19,9 +19,8 @@
 |---|---|---|---|---|
 | 社内利用者 | 利用者 | 社内 | ① | |
 | Application Gateway(WAF v2) | Application Gateway | snet-agw | ① | |
-| App Service | App Service | rg(PaaS) | ① | 受信はプライベートエンドポイント経由 |
+| App Service | App Service | rg(PaaS) | ① | 受信はプライベートエンドポイント経由。送信はVNet統合(snet-app)経由 |
 | PE(App Service) | Private Endpoint | snet-pe | ① | |
-| App Service VNet統合 | (App Service の機能) | snet-app | ① | (提案) 送信用。PEへの経路になる |
 | PE(SQL Database) | Private Endpoint | snet-pe | ① | |
 | SQL Database | SQL Database | rg(PaaS) | ① | |
 | PE(Key Vault) | Private Endpoint | snet-pe | ① | |
@@ -35,10 +34,9 @@
 | ① | 1 | 社内利用者 → Application Gateway | HTTPS 443 | main |
 | ① | 2 | Application Gateway → PE(App Service) | HTTPS 443 | main |
 | ① | 3 | PE(App Service) → App Service | Private Link | main |
-| ① | 4 | App Service → App Service VNet統合 | 送信通信 | private |
-| ① | 5 | App Service VNet統合 → PE(SQL Database) | TDS 1433 | private |
-| ① | | PE(SQL Database) → SQL Database | Private Link | private |
-| ① | 6 | App Service VNet統合 → PE(Key Vault) | HTTPS 443 | private |
+| ① | 4 | App Service → PE(SQL Database) | TDS 1433(VNet統合経由) | main |
+| ① | 5 | PE(SQL Database) → SQL Database | Private Link | main |
+| ① | | App Service → PE(Key Vault) | シークレット取得 HTTPS 443(VNet統合経由) | private |
 | ① | | PE(Key Vault) → Key Vault | Private Link | private |
 | ① | | App Service → Application Insights | テレメトリ | log |
 | ① | | 社内利用者 → Entra ID | サインイン(OIDC) | mgmt |

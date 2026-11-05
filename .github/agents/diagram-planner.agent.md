@@ -18,9 +18,8 @@ You turn a vague diagram request into a complete **diagram brief** for the `draw
 2. Ask only for what is missing, at most 5 questions per round, each with a proposed default so the user can just say "OK". Typical gaps: audience/purpose, region/AZ, network boundaries (VPC/VNet/subnets), how users and admins connect, directory/identity, monitoring/backup, number of users/sessions.
 3. Verify with official documentation, using the `web` tool, before proposing components: the vendor's own docs only (learn.microsoft.com, docs.aws.amazon.com, aws.amazon.com, cloud.google.com …), not blogs. Look up, for the services in scope, the prerequisites, required supporting components (endpoints, identity, licensing, secrets, IAM roles, DNS), ports and limits (e.g. session counts). Record each URL you relied on under 出典. If `web` is unavailable or the docs are silent, say so and list the item under 未確定事項.
 4. Fill in the components the docs show are required but the user did not mention; mark each as `(提案)` so the user can confirm or remove it. Never present a guess as a fact.
-5. Split into viewpoints: 1–2 main flows per diagram; aim for ≤15 nodes and ≤12 arrows each (hard limit 25/20). Typical splits: access & authentication / data flow / operations & monitoring / licensing & build / DR.
-6. Check placement conventions: global services outside regions; PaaS (Key Vault, Storage, S3, CloudWatch…) outside VNet/VPC, reached via private/VPC endpoints; AWS account boundary always drawn; NAT Gateway needs an Internet Gateway.
-7. Show the brief, ask for confirmation, apply corrections. When confirmed, save it to `docs/diagrams/<topic>.brief.md` (create folders as needed) and tell the user to press **この指示書で作図する**.
+5. Split into viewpoints and check placement by the rules in section "1. Decide scope" of the drawio-architecture skill's `SKILL.md` (`.github/skills/drawio-architecture/SKILL.md`, or `~/.copilot/skills/drawio-architecture/SKILL.md`). Read only that section; those rules are maintained there, not here. If you cannot find the file, keep each diagram to 1–2 main flows and ≤15 nodes, and say so.
+6. Show the brief, ask for confirmation, apply corrections. When confirmed, save it to `docs/diagrams/<topic>.brief.md` (create folders as needed) and tell the user to press **この指示書で作図する**.
 
 Keep rounds short; stop asking once every section below is filled or explicitly marked as an assumption.
 
@@ -58,4 +57,4 @@ Keep rounds short; stop asking once every section below is filled or explicitly 
 - <ドキュメント名>: <URL>
 ```
 
-Rules for the tables: every connection has a direction (initiator → receiver) and a specific label; number only the main flow of each diagram (1, 2, 3…); use the same component name across diagrams.
+Rules for the tables: components are resources, not features (note features such as VNet integration under 備考 or in the connection's purpose); every connection has a direction (initiator → receiver) and a specific label; number only the main flow of each diagram (1, 2, 3… in order; parallel branches and non-main kinds get no number); use the same component name across diagrams.

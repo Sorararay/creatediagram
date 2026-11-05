@@ -16,9 +16,16 @@ Run `python` (or `python3`); on Windows, if it is missing or opens the Microsoft
 
 ## 1. Decide scope (before drawing)
 
-- Audience and purpose of the diagram. Draw only 1–2 main flows per diagram; split monitoring, ops access, DR etc. into separate diagrams.
-- `title`: system + environment + viewpoint (e.g. 〇〇システム 本番環境 ネットワーク構成図).
-- Nesting: account/subscription → region → VNet/VPC → subnet. PaaS (Key Vault, Storage, ACR, Log Analytics, S3, CloudWatch…) goes outside VNet/VPC, reached via private/VPC endpoints. Global services (Front Door, Entra ID, CloudFront, Route 53, IAM) go outside regions.
+First look for a diagram brief (`docs/diagrams/*.brief.md`, or one the user names). If one matches the request, it is the source of truth: take titles, the split into diagrams, components, connections and step numbers from it and skip the rest of this section, except for checking the brief against the rules below. Do not ask again about what it settles. Treat items under 未確定事項・仮定 as assumptions and list them in your report. If something in it breaks a rule below, say so instead of silently changing it.
+
+Without a brief, decide these yourself (these rules are also the ones the Diagram Planner agent follows):
+
+- Audience and purpose of the diagram. Draw only 1–2 main flows per diagram; split monitoring, ops access, DR etc. into separate diagrams (typical viewpoints: access & authentication / data flow / operations & monitoring / licensing & build / DR).
+- Size: aim for ≤15 nodes and ≤12 arrows per diagram; over 25 nodes or 20 arrows the script warns.
+- `title`: system + environment + viewpoint (e.g. 〇〇システム 本番環境 ネットワーク構成図). Number split diagrams ①②….
+- Nodes are resources, not features or settings (e.g. App Service VNet integration is a property of App Service: put it in the arrow label, not as a node).
+- Nesting: account/subscription → region → VNet/VPC → subnet. PaaS (Key Vault, Storage, ACR, Log Analytics, S3, CloudWatch…) goes outside VNet/VPC, reached via private/VPC endpoints. Global services (Front Door, Entra ID, CloudFront, Route 53, IAM) go outside regions. Always draw the AWS account boundary, even for one account. A NAT Gateway needs an Internet Gateway in the VPC.
+- Step numbers 1, 2, 3… go only on the main flow, in the order it happens; parallel branches and secondary arrows get no number.
 
 ## 2. Find icons
 
